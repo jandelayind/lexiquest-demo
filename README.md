@@ -1,6 +1,10 @@
 # LexiQuest browser demo
 
-A free, static educational prototype published with GitHub Pages. This public repository contains only the older standalone classroom demo, not the private Node.js/SQLite school application or any school database.
+A free, static educational prototype published with GitHub Pages. This public repository contains the standalone classroom demo and the separate Sound Studio draft, not the private Node.js/SQLite school application or any school database.
+
+## Sound Studio
+
+Open https://jandelayind.github.io/lexiquest-demo/phonics/ for 149 original draft lesson plans across six phases, an interactive 44-sound atlas, device word narration, teacher clip tools and local practice history. Australian voices are preferred when the device supplies them. Listen-and-point requires at least two permitted, reviewed teacher sound recordings; no phoneme recordings are bundled. This is not a complete voiced course or validated SSP. See [Sound Studio instructions](phonics/README.md) and [teaching guide](phonics/guide.html).
 
 ## Try it
 
@@ -18,7 +22,7 @@ GitHub Pages serves static HTML/CSS/JavaScript; it cannot run the full app's Nod
 
 ## Publishing
 
-Pages uses the `main` branch, root directory `/`. `.nojekyll` prevents Jekyll processing. All assets are inline, so the demo works under the project URL `/lexiquest-demo/` without root-relative asset paths or a build process. No custom domain or payment is required for this public repository within GitHub Pages limits.
+Pages uses the `main` branch, root directory `/`. `.nojekyll` prevents Jekyll processing. The classroom demo uses inline assets; Sound Studio uses relative module and stylesheet paths under `phonics/`. Neither needs a build process. No custom domain or payment is required for this public repository within GitHub Pages limits.
 
 Before committing updates, review the entire diff: everything in this repository is public. Never add databases, environment files, private articles, real names, credentials or recordings.
 
