@@ -90,6 +90,14 @@ A local source archive was also prepared at the project root: `LexiQuest_Sound_S
 
 After the finite automation ended, the user requested a working demo and a Git push. Prepared this separate draft for the existing public `jandelayind/lexiquest-demo` Pages repository at `/phonics/`, with a link from the original classroom demo and updated README instructions. The private full application and its data remain untouched. All 62 tests passed again; local browser checks confirmed the journey, real available Karen en-AU voice selection, atlas navigation and moon teaching notes. Publication does not install or verify a phoneme audio library; no recordings or browser learning history are included in source. Earlier local-only statements below describe the scheduled work at that time, not this later user authorisation.
 
+## 1 November 2026 — real-browser audio verification
+
+Ran the clip and drill paths end to end in real Chrome (headless, throwaway profile, local preview) using synthetic sine tones as labelled test audio. Passed, 16 of 16: rejection of too-long, too-short, undecodable and oversized files; upload, preview and save for WAV, MP3, M4A, Ogg and WebM; recording through a real MediaRecorder and decoder; IndexedDB blobs surviving a full browser restart and playing to the end; overwrite and delete with confirmation; a complete six-round listen-and-point drill with reveal; and the session in Practice history after reload.
+
+This found two upload bugs, both fixed locally: Chrome labels `.m4a` as `audio/x-m4a` and audio-only `.webm` as `video/webm`, and both were rejected. All 63 unit tests pass, including a new regression test.
+
+Still unverified: a physical microphone (`getUserMedia` never resolved in headless Chrome here, so a synthetic input stream replaced it), Safari, iOS, Firefox, and any human listening. Tones say nothing about phonetic accuracy. No test audio or recordings were added to this repository.
+
 ## Final scheduled handoff
 
 1. On the final scheduled run, do not start another feature. Summarise the local draft: 149 plans across six phases, original 44-tile atlas, honestly labelled device narration, consent/review-gated teacher clip tools, conditional six-round listen-and-point and local practice history; 62 passing tests (including a fresh archive extraction) and limited actual browser checks. Offer the local source ZIP and README if useful. Explain that no real phoneme library or custom illustration set is supplied and that physical recording/blob reload and real-audio drill testing remain outstanding. The adaptation is not the complete published programme or a validated SSP.

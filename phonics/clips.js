@@ -1,13 +1,15 @@
 import {soundById} from './course.js';
 
 export const CLIP_LIMITS=Object.freeze({bytes:1000000,minSeconds:0.1,maxSeconds:10,database:'lexiquest-sound-studio-clips-v1'});
-export const clipMimeTypes=['audio/webm','audio/ogg','audio/mp4','audio/mpeg','audio/wav','audio/x-wav'];
+export const clipMimeTypes=['audio/webm','audio/ogg','audio/mp4','audio/x-m4a','audio/m4a','audio/mpeg','audio/mp3','audio/wav','audio/x-wav','audio/wave'];
 const mimeType=blob=>String(blob?.type||'').toLowerCase().split(';')[0].trim();
 export function validateClipBlob(blob){
   if(!(blob instanceof Blob)||!blob.size||blob.size>CLIP_LIMITS.bytes)throw Error('Use a non-empty audio clip of at most 1 MB.');
-  if(!clipMimeTypes.includes(mimeType(blob)))throw Error('Use a supported WebM, Ogg, MP4, MP3 or WAV audio file.');
+  if(!clipMimeTypes.includes(mimeType(blob)))throw Error('Use a supported WebM, Ogg, MP4/M4A, MP3 or WAV audio file.');
   return blob;
 }
+// Browsers label an audio-only .webm file as video/webm from its extension. inspectClip still decodes it as audio.
+export function audioTypedFile(file){return mimeType(file)==='video/webm'?new Blob([file],{type:'audio/webm'}):file;}
 export async function inspectClip(blob,AudioContextType=globalThis.AudioContext||globalThis.webkitAudioContext){
   validateClipBlob(blob);
   if(!AudioContextType)throw Error('This browser cannot inspect audio safely. Try a current browser with audio decoding support.');

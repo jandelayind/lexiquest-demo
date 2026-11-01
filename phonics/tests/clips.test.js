@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {CLIP_LIMITS,validateClipBlob,inspectClip,reviewedClip,usableClip,LocalClipStore,SoundClipPlayer} from '../clips.js';
+import {CLIP_LIMITS,audioTypedFile,validateClipBlob,inspectClip,reviewedClip,usableClip,LocalClipStore,SoundClipPlayer} from '../clips.js';
 
 const blob=new Blob(['synthetic test bytes, not a phoneme recording'],{type:'audio/wav'});
 const input={soundId:'s',blob,duration:1,accent:'en-AU',source:'upload',consent:true,reviewed:true,playbackCompleted:true};
@@ -83,4 +83,13 @@ test('failed storage transactions do not report success or overwrite the prior m
   const setup=storageHarness();await setup.store.save(input);setup.setFail();
   await assert.rejects(setup.store.save({...input,accent:'en-GB'}),/not saved/);
   assert.equal((await setup.store.get('s')).accent,'en-AU');
+});
+
+test('files browsers actually label are accepted: m4a variants and audio-only webm',()=>{
+  for(const type of ['audio/x-m4a','audio/m4a','audio/mp4','audio/mp3','audio/wave'])assert.ok(validateClipBlob(new Blob(['x'],{type})));
+  const webm=audioTypedFile(new Blob(['x'],{type:'video/webm'}));
+  assert.equal(webm.type,'audio/webm');assert.ok(validateClipBlob(webm));
+  assert.throws(()=>validateClipBlob(new Blob(['x'],{type:'video/webm'})),/supported/);
+  assert.throws(()=>validateClipBlob(audioTypedFile(new Blob(['x'],{type:'video/mp4'}))),/supported/);
+  const wav=new Blob(['x'],{type:'audio/wav'});assert.equal(audioTypedFile(wav),wav);
 });
