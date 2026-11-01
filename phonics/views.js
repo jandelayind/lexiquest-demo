@@ -22,7 +22,7 @@ export function filterSounds(query='',category='all'){
 }
 
 export function soundCards(items){
-  return items.length?items.map(sound=>`<button class="sound-tile ${sound.category}" data-sound="${sound.id}" aria-label="Explore ${escapeHtml(sound.word)}, sound /${escapeHtml(sound.ipa)}/"><span class="picture" aria-hidden="true">${sound.graphic}</span><strong>/${escapeHtml(sound.ipa)}/</strong><span class="anchor">${escapeHtml(sound.word)}</span><small>${sound.spellings.map(escapeHtml).join(' · ')}</small></button>`).join(''):'<p class="empty">No sounds match. Try a word such as moon or a spelling such as sh.</p>';
+  return items.length?items.map(sound=>`<button class="sound-tile ${sound.category}" data-sound="${sound.id}" ><span class="sr-only">Explore </span><span class="picture" aria-hidden="true">${sound.graphic}</span><strong>/${escapeHtml(sound.ipa)}/</strong><span class="anchor">${escapeHtml(sound.word)}</span><small>${sound.spellings.map(escapeHtml).join(' · ')}</small></button>`).join(''):'<p class="empty">No sounds match. Try a word such as moon or a spelling such as sh.</p>';
 }
 
 export function atlasView(){

@@ -41,7 +41,7 @@ test('atlas searches words, IPA and spellings and distinguishes sound families',
   assert.match(soundCards([]),/No sounds match/);
   const atlas=atlasView();
   assert.equal((atlas.match(/data-sound=/g)||[]).length,44);
-  assert.equal((atlas.match(/aria-label="Explore/g)||[]).length,44);
+  assert.equal((atlas.match(/<span class="sr-only">Explore /g)||[]).length,44);
   assert.match(atlas,/not audio/);
 });
 test('entry-point assets and guide exist without touching the original demo',()=>{

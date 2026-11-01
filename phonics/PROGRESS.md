@@ -98,6 +98,10 @@ This found two upload bugs, both fixed locally: Chrome labels `.m4a` as `audio/x
 
 Still unverified: a physical microphone (`getUserMedia` never resolved in headless Chrome here, so a synthetic input stream replaced it), Safari, iOS, Firefox, and any human listening. Tones say nothing about phonetic accuracy. No test audio or recordings were added to this repository.
 
+## 1 November 2026 — WebKit and automated accessibility checks
+
+The same 16 browser checks pass in Playwright's WebKit build, with a synthetic input stream in place of a microphone. This is not Safari or iOS on a real device. Firefox could not start in the test environment, so it remains untested. An automated axe WCAG 2.1 A/AA audit of the five main views now reports no violations, after fixing low-contrast text and atlas and drill tile names that did not match their visible text. Automated audits catch only part of accessibility; no screen-reader or learner testing has been done, and lesson views and active drill rounds were not audited.
+
 ## Final scheduled handoff
 
 1. On the final scheduled run, do not start another feature. Summarise the local draft: 149 plans across six phases, original 44-tile atlas, honestly labelled device narration, consent/review-gated teacher clip tools, conditional six-round listen-and-point and local practice history; 62 passing tests (including a fresh archive extraction) and limited actual browser checks. Offer the local source ZIP and README if useful. Explain that no real phoneme library or custom illustration set is supplied and that physical recording/blob reload and real-audio drill testing remain outstanding. The adaptation is not the complete published programme or a validated SSP.
